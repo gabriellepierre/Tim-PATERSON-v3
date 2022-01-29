@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '8e200288ca224b7c26d01916f7ec9cb7c12a7721',
+        'reference' => '22260bb5b1889efd8fb6aa7b1eae6d49c56bc465',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '8e200288ca224b7c26d01916f7ec9cb7c12a7721',
+            'reference' => '22260bb5b1889efd8fb6aa7b1eae6d49c56bc465',
             'dev_requirement' => false,
         ),
         'doctrine/annotations' => array(
@@ -784,6 +784,15 @@
             'reference' => 'e80f87d2c9495966768310fc531b487ce64237a2',
             'dev_requirement' => false,
         ),
+        'twbs/bootstrap' => array(
+            'pretty_version' => 'v4.0.0',
+            'version' => '4.0.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../twbs/bootstrap',
+            'aliases' => array(),
+            'reference' => '8a628b943cf31ca0a002c08af661a95772480225',
+            'dev_requirement' => false,
+        ),
         'twig/extra-bundle' => array(
             'pretty_version' => 'v3.3.7',
             'version' => '3.3.7.0',
@@ -801,6 +810,12 @@
             'aliases' => array(),
             'reference' => '8f168c6ffa3ce76d1786b3cd52275424a3fc675b',
             'dev_requirement' => false,
+        ),
+        'twitter/bootstrap' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => 'v4.0.0',
+            ),
         ),
     ),
 );
