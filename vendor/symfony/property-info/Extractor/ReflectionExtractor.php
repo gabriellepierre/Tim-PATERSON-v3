@@ -35,17 +35,17 @@ class ReflectionExtractor implements PropertyListExtractorInterface, PropertyTyp
     /**
      * @internal
      */
-    public static array $defaultMutatorPrefixes = ['add', 'remove', 'set'];
+    public static $defaultMutatorPrefixes = ['add', 'remove', 'set'];
 
     /**
      * @internal
      */
-    public static array $defaultAccessorPrefixes = ['get', 'is', 'has', 'can'];
+    public static $defaultAccessorPrefixes = ['get', 'is', 'has', 'can'];
 
     /**
      * @internal
      */
-    public static array $defaultArrayMutatorPrefixes = ['add', 'remove'];
+    public static $defaultArrayMutatorPrefixes = ['add', 'remove'];
 
     public const ALLOW_PRIVATE = 1;
     public const ALLOW_PROTECTED = 2;
@@ -270,6 +270,13 @@ class ReflectionExtractor implements PropertyListExtractorInterface, PropertyTyp
         $magicMethods = $context['enable_magic_methods_extraction'] ?? $this->magicMethodsFlags;
         $allowMagicCall = (bool) ($magicMethods & self::ALLOW_MAGIC_CALL);
         $allowMagicGet = (bool) ($magicMethods & self::ALLOW_MAGIC_GET);
+
+        if (isset($context['enable_magic_call_extraction'])) {
+            trigger_deprecation('symfony/property-info', '5.2', 'Using the "enable_magic_call_extraction" context option in "%s()" is deprecated. Use "enable_magic_methods_extraction" instead.', __METHOD__);
+
+            $allowMagicCall = $context['enable_magic_call_extraction'] ?? false;
+        }
+
         $hasProperty = $reflClass->hasProperty($property);
         $camelProp = $this->camelize($property);
         $getsetter = lcfirst($camelProp); // jQuery style, e.g. read: last(), write: last($item)
@@ -322,6 +329,13 @@ class ReflectionExtractor implements PropertyListExtractorInterface, PropertyTyp
         $magicMethods = $context['enable_magic_methods_extraction'] ?? $this->magicMethodsFlags;
         $allowMagicCall = (bool) ($magicMethods & self::ALLOW_MAGIC_CALL);
         $allowMagicSet = (bool) ($magicMethods & self::ALLOW_MAGIC_SET);
+
+        if (isset($context['enable_magic_call_extraction'])) {
+            trigger_deprecation('symfony/property-info', '5.2', 'Using the "enable_magic_call_extraction" context option in "%s()" is deprecated. Use "enable_magic_methods_extraction" instead.', __METHOD__);
+
+            $allowMagicCall = $context['enable_magic_call_extraction'] ?? false;
+        }
+
         $allowConstruct = $context['enable_constructor_extraction'] ?? $this->enableConstructorExtraction;
         $allowAdderRemover = $context['enable_adder_remover_extraction'] ?? true;
 
@@ -509,11 +523,13 @@ class ReflectionExtractor implements PropertyListExtractorInterface, PropertyTyp
         try {
             $reflectionClass = new \ReflectionClass($class);
 
-            $reflectionProperty = $reflectionClass->getProperty($property);
-            $reflectionPropertyType = $reflectionProperty->getType();
+            if (\PHP_VERSION_ID >= 70400) {
+                $reflectionProperty = $reflectionClass->getProperty($property);
+                $reflectionPropertyType = $reflectionProperty->getType();
 
-            if (null !== $reflectionPropertyType && $types = $this->extractFromReflectionType($reflectionPropertyType, $reflectionProperty->getDeclaringClass())) {
-                return $types;
+                if (null !== $reflectionPropertyType && $types = $this->extractFromReflectionType($reflectionPropertyType, $reflectionProperty->getDeclaringClass())) {
+                    return $types;
+                }
             }
         } catch (\ReflectionException $e) {
             return null;
@@ -573,9 +589,13 @@ class ReflectionExtractor implements PropertyListExtractorInterface, PropertyTyp
         try {
             $reflectionProperty = new \ReflectionProperty($class, $property);
 
-            $reflectionPropertyType = $reflectionProperty->getType();
+            if (\PHP_VERSION_ID >= 70400) {
+                $reflectionPropertyType = $reflectionProperty->getType();
 
-            return null !== $reflectionPropertyType && $reflectionPropertyType->allowsNull();
+                return null !== $reflectionPropertyType && $reflectionPropertyType->allowsNull();
+            }
+
+            return false;
         } catch (\ReflectionException $e) {
             // Return false if the property doesn't exist
         }

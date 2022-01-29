@@ -25,7 +25,7 @@ use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 final class MigratingPasswordHasher implements PasswordHasherInterface
 {
     private $bestHasher;
-    private array $extraHashers;
+    private $extraHashers;
 
     public function __construct(PasswordHasherInterface $bestHasher, PasswordHasherInterface ...$extraHashers)
     {

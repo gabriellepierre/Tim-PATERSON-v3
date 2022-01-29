@@ -11,7 +11,6 @@
 
 namespace Symfony\Bridge\Twig\Command;
 
-use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\CI\GithubActionReporter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Completion\CompletionInput;
@@ -36,11 +35,17 @@ use Twig\Source;
  * @author Marc Weistroff <marc.weistroff@sensiolabs.com>
  * @author Jérôme Tamarelle <jerome@tamarelle.net>
  */
-#[AsCommand(name: 'lint:twig', description: 'Lint a Twig template and outputs encountered errors')]
 class LintCommand extends Command
 {
+    protected static $defaultName = 'lint:twig';
+    protected static $defaultDescription = 'Lint a Twig template and outputs encountered errors';
+
     private $twig;
-    private string $format;
+
+    /**
+     * @var string|null
+     */
+    private $format;
 
     public function __construct(Environment $twig)
     {
@@ -52,6 +57,7 @@ class LintCommand extends Command
     protected function configure()
     {
         $this
+            ->setDescription(self::$defaultDescription)
             ->addOption('format', null, InputOption::VALUE_REQUIRED, 'The output format')
             ->addOption('show-deprecations', null, InputOption::VALUE_NONE, 'Show deprecations as errors')
             ->addArgument('filename', InputArgument::IS_ARRAY, 'A file, a directory or "-" for reading from STDIN')
@@ -77,12 +83,16 @@ EOF
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
         $filenames = $input->getArgument('filename');
         $showDeprecations = $input->getOption('show-deprecations');
-        $this->format = $input->getOption('format') ?? (GithubActionReporter::isGithubActionEnvironment() ? 'github' : 'txt');
+        $this->format = $input->getOption('format');
+
+        if (null === $this->format) {
+            $this->format = GithubActionReporter::isGithubActionEnvironment() ? 'github' : 'txt';
+        }
 
         if (['-'] === $filenames) {
             return $this->display($input, $output, $io, [$this->validate(file_get_contents('php://stdin'), uniqid('sf_', true))]);

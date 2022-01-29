@@ -47,7 +47,7 @@ class PropertyAccessorBuilder
      *
      * @return $this
      */
-    public function enableMagicMethods(): static
+    public function enableMagicMethods(): self
     {
         $this->magicMethods = PropertyAccessor::MAGIC_GET | PropertyAccessor::MAGIC_SET | PropertyAccessor::MAGIC_CALL;
 
@@ -59,7 +59,7 @@ class PropertyAccessorBuilder
      *
      * @return $this
      */
-    public function disableMagicMethods(): static
+    public function disableMagicMethods(): self
     {
         $this->magicMethods = PropertyAccessor::DISALLOW_MAGIC_METHODS;
 
@@ -71,7 +71,7 @@ class PropertyAccessorBuilder
      *
      * @return $this
      */
-    public function enableMagicCall(): static
+    public function enableMagicCall()
     {
         $this->magicMethods |= PropertyAccessor::MAGIC_CALL;
 
@@ -93,7 +93,7 @@ class PropertyAccessorBuilder
      *
      * @return $this
      */
-    public function enableMagicSet(): static
+    public function enableMagicSet(): self
     {
         $this->magicMethods |= PropertyAccessor::MAGIC_SET;
 
@@ -105,7 +105,7 @@ class PropertyAccessorBuilder
      *
      * @return $this
      */
-    public function disableMagicCall(): static
+    public function disableMagicCall()
     {
         $this->magicMethods &= ~PropertyAccessor::MAGIC_CALL;
 
@@ -117,7 +117,7 @@ class PropertyAccessorBuilder
      *
      * @return $this
      */
-    public function disableMagicGet(): static
+    public function disableMagicGet(): self
     {
         $this->magicMethods &= ~PropertyAccessor::MAGIC_GET;
 
@@ -129,7 +129,7 @@ class PropertyAccessorBuilder
      *
      * @return $this
      */
-    public function disableMagicSet(): static
+    public function disableMagicSet(): self
     {
         $this->magicMethods &= ~PropertyAccessor::MAGIC_SET;
 
@@ -139,7 +139,7 @@ class PropertyAccessorBuilder
     /**
      * @return bool whether the use of "__call" by the PropertyAccessor is enabled
      */
-    public function isMagicCallEnabled(): bool
+    public function isMagicCallEnabled()
     {
         return (bool) ($this->magicMethods & PropertyAccessor::MAGIC_CALL);
     }
@@ -168,7 +168,7 @@ class PropertyAccessorBuilder
      *
      * @return $this
      */
-    public function enableExceptionOnInvalidIndex(): static
+    public function enableExceptionOnInvalidIndex()
     {
         $this->throwExceptionOnInvalidIndex = true;
 
@@ -182,7 +182,7 @@ class PropertyAccessorBuilder
      *
      * @return $this
      */
-    public function disableExceptionOnInvalidIndex(): static
+    public function disableExceptionOnInvalidIndex()
     {
         $this->throwExceptionOnInvalidIndex = false;
 
@@ -192,7 +192,7 @@ class PropertyAccessorBuilder
     /**
      * @return bool whether an exception is thrown or null is returned when reading a non-existing index
      */
-    public function isExceptionOnInvalidIndexEnabled(): bool
+    public function isExceptionOnInvalidIndexEnabled()
     {
         return $this->throwExceptionOnInvalidIndex;
     }
@@ -205,7 +205,7 @@ class PropertyAccessorBuilder
      *
      * @return $this
      */
-    public function enableExceptionOnInvalidPropertyPath(): static
+    public function enableExceptionOnInvalidPropertyPath()
     {
         $this->throwExceptionOnInvalidPropertyPath = true;
 
@@ -219,7 +219,7 @@ class PropertyAccessorBuilder
      *
      * @return $this
      */
-    public function disableExceptionOnInvalidPropertyPath(): static
+    public function disableExceptionOnInvalidPropertyPath()
     {
         $this->throwExceptionOnInvalidPropertyPath = false;
 
@@ -229,7 +229,7 @@ class PropertyAccessorBuilder
     /**
      * @return bool whether an exception is thrown or null is returned when reading a non-existing property
      */
-    public function isExceptionOnInvalidPropertyPath(): bool
+    public function isExceptionOnInvalidPropertyPath()
     {
         return $this->throwExceptionOnInvalidPropertyPath;
     }
@@ -239,7 +239,7 @@ class PropertyAccessorBuilder
      *
      * @return $this
      */
-    public function setCacheItemPool(CacheItemPoolInterface $cacheItemPool = null): static
+    public function setCacheItemPool(CacheItemPoolInterface $cacheItemPool = null)
     {
         $this->cacheItemPool = $cacheItemPool;
 
@@ -248,8 +248,10 @@ class PropertyAccessorBuilder
 
     /**
      * Gets the used cache system.
+     *
+     * @return CacheItemPoolInterface|null
      */
-    public function getCacheItemPool(): ?CacheItemPoolInterface
+    public function getCacheItemPool()
     {
         return $this->cacheItemPool;
     }
@@ -257,7 +259,7 @@ class PropertyAccessorBuilder
     /**
      * @return $this
      */
-    public function setReadInfoExtractor(?PropertyReadInfoExtractorInterface $readInfoExtractor): static
+    public function setReadInfoExtractor(?PropertyReadInfoExtractorInterface $readInfoExtractor)
     {
         $this->readInfoExtractor = $readInfoExtractor;
 
@@ -272,7 +274,7 @@ class PropertyAccessorBuilder
     /**
      * @return $this
      */
-    public function setWriteInfoExtractor(?PropertyWriteInfoExtractorInterface $writeInfoExtractor): static
+    public function setWriteInfoExtractor(?PropertyWriteInfoExtractorInterface $writeInfoExtractor)
     {
         $this->writeInfoExtractor = $writeInfoExtractor;
 
@@ -286,8 +288,10 @@ class PropertyAccessorBuilder
 
     /**
      * Builds and returns a new PropertyAccessor object.
+     *
+     * @return PropertyAccessorInterface
      */
-    public function getPropertyAccessor(): PropertyAccessorInterface
+    public function getPropertyAccessor()
     {
         $throw = PropertyAccessor::DO_NOT_THROW;
 

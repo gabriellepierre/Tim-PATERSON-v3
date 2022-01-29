@@ -33,7 +33,7 @@ class PropertyPathIterator extends \ArrayIterator implements PropertyPathIterato
     /**
      * {@inheritdoc}
      */
-    public function isIndex(): bool
+    public function isIndex()
     {
         return $this->path->isIndex($this->key());
     }
@@ -41,7 +41,7 @@ class PropertyPathIterator extends \ArrayIterator implements PropertyPathIterato
     /**
      * {@inheritdoc}
      */
-    public function isProperty(): bool
+    public function isProperty()
     {
         return $this->path->isProperty($this->key());
     }

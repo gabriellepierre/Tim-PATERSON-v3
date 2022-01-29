@@ -27,8 +27,8 @@ class AppVariable
 {
     private $tokenStorage;
     private $requestStack;
-    private string $environment;
-    private bool $debug;
+    private $environment;
+    private $debug;
 
     public function setTokenStorage(TokenStorageInterface $tokenStorage)
     {
@@ -53,37 +53,50 @@ class AppVariable
     /**
      * Returns the current token.
      *
+     * @return TokenInterface|null
+     *
      * @throws \RuntimeException When the TokenStorage is not available
      */
-    public function getToken(): ?TokenInterface
+    public function getToken()
     {
-        if (!isset($this->tokenStorage)) {
+        if (null === $tokenStorage = $this->tokenStorage) {
             throw new \RuntimeException('The "app.token" variable is not available.');
         }
 
-        return $this->tokenStorage->getToken();
+        return $tokenStorage->getToken();
     }
 
     /**
      * Returns the current user.
      *
+     * @return UserInterface|null
+     *
      * @see TokenInterface::getUser()
      */
-    public function getUser(): ?UserInterface
+    public function getUser()
     {
-        if (!isset($this->tokenStorage)) {
+        if (null === $tokenStorage = $this->tokenStorage) {
             throw new \RuntimeException('The "app.user" variable is not available.');
         }
 
-        return $this->tokenStorage->getToken()?->getUser();
+        if (!$token = $tokenStorage->getToken()) {
+            return null;
+        }
+
+        $user = $token->getUser();
+
+        // @deprecated since Symfony 5.4, $user will always be a UserInterface instance
+        return \is_object($user) ? $user : null;
     }
 
     /**
      * Returns the current request.
+     *
+     * @return Request|null
      */
-    public function getRequest(): ?Request
+    public function getRequest()
     {
-        if (!isset($this->requestStack)) {
+        if (null === $this->requestStack) {
             throw new \RuntimeException('The "app.request" variable is not available.');
         }
 
@@ -92,10 +105,12 @@ class AppVariable
 
     /**
      * Returns the current session.
+     *
+     * @return Session|null
      */
-    public function getSession(): ?Session
+    public function getSession()
     {
-        if (!isset($this->requestStack)) {
+        if (null === $this->requestStack) {
             throw new \RuntimeException('The "app.session" variable is not available.');
         }
         $request = $this->getRequest();
@@ -105,10 +120,12 @@ class AppVariable
 
     /**
      * Returns the current app environment.
+     *
+     * @return string
      */
-    public function getEnvironment(): string
+    public function getEnvironment()
     {
-        if (!isset($this->environment)) {
+        if (null === $this->environment) {
             throw new \RuntimeException('The "app.environment" variable is not available.');
         }
 
@@ -117,10 +134,12 @@ class AppVariable
 
     /**
      * Returns the current app debug mode.
+     *
+     * @return bool
      */
-    public function getDebug(): bool
+    public function getDebug()
     {
-        if (!isset($this->debug)) {
+        if (null === $this->debug) {
             throw new \RuntimeException('The "app.debug" variable is not available.');
         }
 
@@ -132,8 +151,10 @@ class AppVariable
      *  * getFlashes() returns all the flash messages
      *  * getFlashes('notice') returns a simple array with flash messages of that type
      *  * getFlashes(['notice', 'error']) returns a nested array of type => messages.
+     *
+     * @return array
      */
-    public function getFlashes(string|array $types = null): array
+    public function getFlashes($types = null)
     {
         try {
             if (null === $session = $this->getSession()) {

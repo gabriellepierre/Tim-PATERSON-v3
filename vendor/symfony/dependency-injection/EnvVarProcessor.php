@@ -21,8 +21,8 @@ use Symfony\Component\DependencyInjection\Exception\RuntimeException;
 class EnvVarProcessor implements EnvVarProcessorInterface
 {
     private $container;
-    private \Traversable $loaders;
-    private array $loadedVars = [];
+    private $loaders;
+    private $loadedVars = [];
 
     /**
      * @param EnvVarLoaderInterface[] $loaders
@@ -36,7 +36,7 @@ class EnvVarProcessor implements EnvVarProcessorInterface
     /**
      * {@inheritdoc}
      */
-    public static function getProvidedTypes(): array
+    public static function getProvidedTypes()
     {
         return [
             'base64' => 'string',
@@ -62,7 +62,7 @@ class EnvVarProcessor implements EnvVarProcessorInterface
     /**
      * {@inheritdoc}
      */
-    public function getEnv(string $prefix, string $name, \Closure $getEnv): mixed
+    public function getEnv(string $prefix, string $name, \Closure $getEnv)
     {
         $i = strpos($name, ':');
 
@@ -292,7 +292,7 @@ class EnvVarProcessor implements EnvVarProcessorInterface
         }
 
         if ('csv' === $prefix) {
-            return str_getcsv($env, ',', '"', '');
+            return str_getcsv($env, ',', '"', \PHP_VERSION_ID >= 70400 ? '' : '\\');
         }
 
         if ('trim' === $prefix) {
