@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\Auteurs;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,6 +21,14 @@ class ArticleType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'name',
             ])
+            
+            ->add('AuteurAuteur', EntityType::class, [
+                'class' => Auteurs::class,
+                'choice_label' => 'name',
+            ])
+            ->add('date')
+            ->add('Tags', 'entity', array())    
+            ->add('etat')
         ;
     }
 

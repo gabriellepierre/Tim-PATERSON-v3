@@ -24,7 +24,7 @@
             <tr>
                 <td>{{ article.id }}</td>
                 <td>{{ article.title }}</td>
-                <td>{{ article.auteur }}</td>
+                <td>{{ article.auteurauteur }}</td>
                 <td>
                     {% if article.Category.name is defined %}
                         {{ article.Category.name }}
@@ -42,8 +42,8 @@
                 <td>{{ article.Etat }}</td>
 
                 <td>
-                    <a href="{{ path('article_show', {'id': article.id}) }}">Ouvrir</a>
-                    <a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
+                    <a href="{{ path('article_show', {'id': article.id}) }}">Ouvrir</a><br>
+                    <a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a><br>
                     <a href="{{ path('article_delete', {'id': article.id}) }}">Supprimer</a>
                 </td>
             </tr>

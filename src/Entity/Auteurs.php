@@ -28,6 +28,9 @@ class Auteurs
     #[ORM\Column(type: 'string', length: 255)]
     private $Pseudo;
 
+    #[ORM\ManyToOne(targetEntity: Article::class, inversedBy: 'AuteurAuteur')]
+    private $article;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +92,18 @@ class Auteurs
     public function setPseudo(string $Pseudo): self
     {
         $this->Pseudo = $Pseudo;
+
+        return $this;
+    }
+
+    public function getArticle(): ?Article
+    {
+        return $this->article;
+    }
+
+    public function setArticle(?Article $article): self
+    {
+        $this->article = $article;
 
         return $this;
     }
