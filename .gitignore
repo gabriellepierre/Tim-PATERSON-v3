@@ -30,7 +30,6 @@
 /bin/*
 !bin/console
 !bin/symfony_requirements
-/vendor/
 
 # Assets and user uploads
 /web/bundles/
@@ -46,6 +45,11 @@
 # Composer PHAR
 /composer.phar
 
+#Vendor
+/vendor/autoload.php
+/vendor/autoload_runtime.php
+/vendor/bin/*
+
 # Backup entities generated with doctrine:generate:entities command
 **/Entity/*~
 
@@ -59,8 +63,6 @@
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
-/var/
-/vendor/
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
