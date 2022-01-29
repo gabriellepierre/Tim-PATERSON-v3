@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Article index{% endblock %}
+{% block title %}Articles{% endblock %}
 
 {% block body %}
-    <h1>Article index</h1>
+    <h1>Tous les articles</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
-                <th>Category</th>
-                <th>Content</th>
-                <th>actions</th>
+                <th>Titre</th>
+                <th>Categorie</th>
+                <th>Contenu</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -34,7 +34,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucun article trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
