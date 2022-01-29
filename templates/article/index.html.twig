@@ -25,7 +25,7 @@
                         {{ article.Category.name }}
                     {% endif %}
                 </td>
-                <td>{{ article.content }}</td>
+                <td>{{ article.content|nl2br }}</td>
                 <td>
                     <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
                     <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
