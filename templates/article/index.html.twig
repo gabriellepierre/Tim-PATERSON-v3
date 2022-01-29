@@ -29,11 +29,7 @@
                 <td>
                     <a href="{{ path('article_show', {'id': article.id}) }}">Ouvrir</a>
                     <a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
-<<<<<<< HEAD
-                    <!-- <a href="{{ path('article_delete_form', {'id': article.id}) }}">Supprimer</a> -->
-=======
-                    <a href="{{ path('article__delete_form', {'id': article.id}) }}">Supprimer</a>
->>>>>>> 13281a5c9e47158c854419789013687fb5c88407
+                    <a href="{{ path('article_delete', {'id': article.id}) }}">Supprimer</a>
                 </td>
             </tr>
         {% else %}
