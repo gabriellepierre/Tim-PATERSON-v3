@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Article;
+use App\Entity\Auteurs;
 use App\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -20,23 +21,64 @@ class AppFixtures extends Fixture
         $categorie2 = new Category();
         $categorie2->setName("Biographie");
         $manager->persist($categorie2);
+        
+        //
+        $auteur1 = new Auteurs();
+        $auteur1->setNNom("SP");
+        //$auteur1->setPrenom("");
+        //$auteur1->setDescription();
+        //$auteur1->setListeCreations();
+        $auteur1->setPseudo("BSP");
+        $manager->persist($auteur1);
+        
+        $auteur2 = new Auteurs();
+        $auteur2->setNNom("M");
+        $auteur2->setPseudo("TM");
+        $manager->persist($auteur2);
 
+        $auteur3 = new Auteurs();
+        $auteur3->setNNom("P");
+        $auteur3->setPseudo("GP");
+        $manager->persist($auteur3);
+
+        $auteur23 = new Auteurs();
+        $auteur23->setNNom("M & P");
+        $auteur23->setPseudo("TM & GP");
+        $manager->persist($auteur23);
+
+        //
         $article = new Article();
         $article->setTitle("Article 1");
-        $article->setContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut viverra urna in nunc dapibus tincidunt et eu magna. Pellentesque venenatis varius orci sit amet condimentum. Quisque sit amet enim id nisl consectetur gravida. Curabitur efficitur felis rutrum ligula convallis convallis. Vestibulum eget dictum lorem. Vestibulum est justo, fermentum eu eleifend vestibulum, lacinia efficitur erat. Proin a ligula lorem. In iaculis dignissim sodales.");
-        $article->setCategory($categorie);
+        $article->setAuteur("BSP");
+        $article->setContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+        Ut viverra urna in nunc dapibus tincidunt et eu magna. 
+        Pellentesque venenatis varius orci sit amet condimentum. 
+        Quisque sit amet enim id nisl consectetur gravida. 
+        Curabitur efficitur felis rutrum ligula convallis convallis. 
+        Vestibulum eget dictum lorem. 
+        Vestibulum est justo, fermentum eu eleifend vestibulum, lacinia efficitur erat. 
+        Proin a ligula lorem. In iaculis dignissim sodales.");
+        $article->setCategory($categorie);        
+        $article->setTags(["Lorem", "Ipsum"]);
+        $article->setDate(\DateTime::createFromFormat('d-m-Y', "25-01-2022"));
+        $article->setEtat(true);
         $manager->persist($article);
 
         $article = new Article();
         $article->setTitle("Article 2");
-        $article->setContent("Morbi viverra facilisis aliquet. Phasellus suscipit arcu id felis tempor, in fringilla turpis dictum. Fusce porta finibus diam, vitae lacinia nibh finibus id. Donec facilisis nisl quis egestas sollicitudin. Aenean quis nulla est. Aliquam volutpat dolor eget ultricies maximus. Maecenas felis turpis, lacinia et purus in, viverra sagittis ex. Ut laoreet est sit amet ligula auctor, in venenatis magna interdum. Maecenas suscipit accumsan libero, auctor ullamcorper lectus porta semper.");
+        $article->setAuteur("BSP");
+        $article->setContent("Morbi viverra facilisis aliquet. ");
         $article->setCategory($categorie);
+        $article->setTags(["Lorem", "Ipsum"]);
+        $article->setDate(\DateTime::createFromFormat('d-m-Y', "26-01-2022"));
+        $article->setEtat(true);
         $manager->persist($article);
 
-        $articleT = new Article();
-        $articleT->setTitle("Tim PATERSON");
+        $article = new Article();
+        $article->setTitle("Tim PATERSON");
+        $article->setAuteur("TM & GP");
         //{{ article.content|nl2br }}
-        $articleT->setContent("Tim PATERSON est un programmeur informatique de Microsoft connu pour avoir développé l’OS MS-DOS (Microsoft Disk Operating System) en 1983. 
+        $article->setContent("Tim PATERSON est un programmeur informatique de Microsoft connu pour avoir développé l’OS MS-DOS (Microsoft Disk Operating System) en 1983. 
         
         PATERSON est né en 1956 aux Etats-Unis, il est diplômé en 1987 en informatique dans une université de Washington et travaillait en parallèle comme technicien de réparation. Après l’obtention de son diplôme il travaille pour Seattle Computer Products en tant que \"software engineer\" et conçoit du matériel informatique pour Microsoft et des cartes et logiciels compatibles avec les processeurs Intel. 
         
@@ -52,12 +94,10 @@ class AppFixtures extends Fixture
         Rotary Rally Rockets : 1984 Tim Paterson et Douglas Paterson avec une Mazda RX7,
         SCCA PRO Rally : 1989 Tim Paterson et Penny Thomas avec une Porsche 911).
         ");
-        $articleT->setCategory($categorie2);
-        $articleT->setTags(["TIM", "PATERSON", "MICROSOFT"]);
-        $articleT->setDate(\DateTime::createFromFormat('d-m-Y', "27-01-2022"));
-        $articleT->setEtat(true);
-        $manager->persist($articleT);
-
-        $manager->flush();
+        $article->setCategory($categorie2);
+        $article->setTags(["TIM", "PATERSON", "MICROSOFT"]);
+        $article->setDate(\DateTime::createFromFormat('d-m-Y', "27-01-2022"));
+        $article->setEtat(true);
+        $manager->persist($article);
     }
 }
