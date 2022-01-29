@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitbe2a267a827ecb5d815127a9f5af6f6e
+class ComposerStaticInitdfcf1b95b9aadead83bb9866c49aca6c
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -442,17 +442,26 @@ class ComposerStaticInitbe2a267a827ecb5d815127a9f5af6f6e
     );
 
     public static $classMap = array (
+        'App\\Controller\\AdminController' => __DIR__ . '/../..' . '/src/Controller/AdminController.php',
         'App\\Controller\\ArticleController' => __DIR__ . '/../..' . '/src/Controller/ArticleController.php',
         'App\\Controller\\BlogController' => __DIR__ . '/../..' . '/src/Controller/BlogController.php',
         'App\\Controller\\CategoryController' => __DIR__ . '/../..' . '/src/Controller/CategoryController.php',
+        'App\\Controller\\SecurityController' => __DIR__ . '/../..' . '/src/Controller/SecurityController.php',
         'App\\DataFixtures\\AppFixtures' => __DIR__ . '/../..' . '/src/DataFixtures/AppFixtures.php',
         'App\\Entity\\Article' => __DIR__ . '/../..' . '/src/Entity/Article.php',
+        'App\\Entity\\Auteurs' => __DIR__ . '/../..' . '/src/Entity/Auteurs.php',
+        'App\\Entity\\Blog' => __DIR__ . '/../..' . '/src/Entity/Blog.php',
         'App\\Entity\\Category' => __DIR__ . '/../..' . '/src/Entity/Category.php',
+        'App\\Entity\\Utilisateurs' => __DIR__ . '/../..' . '/src/Entity/Utilisateurs.php',
         'App\\Form\\ArticleType' => __DIR__ . '/../..' . '/src/Form/ArticleType.php',
         'App\\Form\\CategoryType' => __DIR__ . '/../..' . '/src/Form/CategoryType.php',
         'App\\Kernel' => __DIR__ . '/../..' . '/src/Kernel.php',
         'App\\Repository\\ArticleRepository' => __DIR__ . '/../..' . '/src/Repository/ArticleRepository.php',
+        'App\\Repository\\AuteursRepository' => __DIR__ . '/../..' . '/src/Repository/AuteursRepository.php',
+        'App\\Repository\\BlogRepository' => __DIR__ . '/../..' . '/src/Repository/BlogRepository.php',
         'App\\Repository\\CategoryRepository' => __DIR__ . '/../..' . '/src/Repository/CategoryRepository.php',
+        'App\\Repository\\UtilisateursRepository' => __DIR__ . '/../..' . '/src/Repository/UtilisateursRepository.php',
+        'App\\Security\\LoginAuthenticator' => __DIR__ . '/../..' . '/src/Security/LoginAuthenticator.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Collator' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/Resources/stubs/Collator.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
@@ -4462,9 +4471,9 @@ class ComposerStaticInitbe2a267a827ecb5d815127a9f5af6f6e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitbe2a267a827ecb5d815127a9f5af6f6e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitbe2a267a827ecb5d815127a9f5af6f6e::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitbe2a267a827ecb5d815127a9f5af6f6e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitdfcf1b95b9aadead83bb9866c49aca6c::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitdfcf1b95b9aadead83bb9866c49aca6c::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitdfcf1b95b9aadead83bb9866c49aca6c::$classMap;
 
         }, null, ClassLoader::class);
     }
