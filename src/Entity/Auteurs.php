@@ -25,6 +25,9 @@ class Auteurs
     #[ORM\Column(type: 'array', nullable: true)]
     private $ListeCreations = [];
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $Pseudo;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +77,18 @@ class Auteurs
     public function setListeCreations(?array $ListeCreations): self
     {
         $this->ListeCreations = $ListeCreations;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->Pseudo;
+    }
+
+    public function setPseudo(string $Pseudo): self
+    {
+        $this->Pseudo = $Pseudo;
 
         return $this;
     }
