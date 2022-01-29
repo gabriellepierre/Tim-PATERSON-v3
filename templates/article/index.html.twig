@@ -9,10 +9,21 @@
         <thead>
             <tr>
                 <th>Id</th>
+<<<<<<< HEAD
                 <th>Titre</th>
                 <th>Categorie</th>
                 <th>Contenu</th>
                 <th>Actions</th>
+=======
+                <th>Title</th>
+                <th>Auteur</th>
+                <th>Category</th>
+                <th>Content</th>
+                <th>Tags</th>
+                <th>Date</th>
+                <th>Publié</th>
+                <th>Actions</th>
+>>>>>>> ac4211dadc31575c93e602b8a5405c7ccc9000e0
             </tr>
         </thead>
         <tbody>
@@ -20,12 +31,23 @@
             <tr>
                 <td>{{ article.id }}</td>
                 <td>{{ article.title }}</td>
+                <td>{{ article.auteur }}</td>
                 <td>
                     {% if article.Category.name is defined %}
                         {{ article.Category.name }}
                     {% endif %}
                 </td>
                 <td>{{ article.content|nl2br }}</td>
+
+                <td>
+                    {% for article in article %}
+                        {{ article.Tags|e }}
+                    {% endfor %}
+                </td>
+
+                <td>{{ article.Date|date("m/d/Y") }}</td>
+                <td>{{ article.Etat }}</td>
+
                 <td>
                     <a href="{{ path('article_show', {'id': article.id}) }}">Ouvrir</a>
                     <a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
@@ -40,5 +62,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('article_new') }}">Créer un nouvel article</a>
+    <a href="{{ path('article_new') }}">Create new</a>
 {% endblock %}
