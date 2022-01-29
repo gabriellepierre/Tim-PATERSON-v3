@@ -88,16 +88,28 @@ class AppFixtures extends Fixture
         
         Il travaillera sur le développement du logiciel Visual Basic mais finira par quitter à nouveau Microsoft en 1998 et créera sa seconde entreprise : Paterson Technologie. 
         
-        Par la suite on le retrouvera dans quelques émissions de télévision, puis dans le rallye SCCA PRO Rally. Enfin, il fera parler de lui pour avoir créé un ordinateur de bord qu’il intégra dans une Porsche 911, 4 roues motrices. 
-        
-        (Ses victoires :
-        Rotary Rally Rockets : 1984 Tim Paterson et Douglas Paterson avec une Mazda RX7,
-        SCCA PRO Rally : 1989 Tim Paterson et Penny Thomas avec une Porsche 911).
+        Par la suite on le retrouvera dans quelques émissions de télévision, puis dans le rallye SCCA PRO Rally. Enfin, il fera parler de lui pour avoir créé un ordinateur de bord qu’il intégra dans une Porsche 911, 4 roues motrices.
         ");
         $article->setCategory($categorie2);
         $article->setTags(["TIM", "PATERSON", "MICROSOFT"]);
         $article->setDate(\DateTime::createFromFormat('d-m-Y', "27-01-2022"));
         $article->setEtat(true);
+
+        $article = new Article();
+        $article->setTitle("Tim PATERSON");
+        $article->setAuteur("TM & GP");
+        //{{ article.content|nl2br }}
+        $article->setContent("
+        (Ses victoires :
+        Rotary Rally Rockets : 1984 Tim Paterson et Douglas Paterson avec une Mazda RX7,
+        SCCA PRO Rally : 1989 Tim Paterson et Penny Thomas avec une Porsche 911).
+        ");
+        $article->setCategory($categorie2);
+        $article->setTags(["TIM", "PATERSON", "RALLU"]);
+        $article->setDate(\DateTime::createFromFormat('d-m-Y', "27-01-2022"));
+        $article->setEtat(true);
         $manager->persist($article);
+
+        $manager->flush();
     }
 }
