@@ -96,8 +96,9 @@ class AppFixtures extends Fixture
         $article->setEtat(true);
         $manager->persist($article);
 
+
         $article = new Article();
-        $article->setTitle("Tim PATERSON");
+        $article->setTitle("Tim PATERSON Rally");
         $article->setAuteur("TM & GP");
         //{{ article.content|nl2br }}
         $article->setContent("
@@ -106,7 +107,7 @@ class AppFixtures extends Fixture
         SCCA PRO Rally : 1989 Tim Paterson et Penny Thomas avec une Porsche 911).
         ");
         $article->setCategory($categorie2);
-        $article->setTags(["TIM", "PATERSON", "RALLU"]);
+        $article->setTags(["TIM", "PATERSON", "RALLY"]);
         $article->setDate(\DateTime::createFromFormat('d-m-Y', "27-01-2022"));
         $article->setEtat(true);
         $manager->persist($article);
