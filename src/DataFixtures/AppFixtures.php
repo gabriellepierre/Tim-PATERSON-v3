@@ -49,7 +49,7 @@ class AppFixtures extends Fixture
         //
         $article = new Article();
         $article->setTitle("Article 1");
-        $article->addAuteurAuteur($auteur1);
+        $article->setAuteur("BSP");
         $article->setContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
         Ut viverra urna in nunc dapibus tincidunt et eu magna. 
         Pellentesque venenatis varius orci sit amet condimentum. 
@@ -66,7 +66,7 @@ class AppFixtures extends Fixture
 
         $article = new Article();
         $article->setTitle("Article 2");
-        $article->addAuteurAuteur($auteur1);
+        $article->setAuteur("BSP");
         $article->setContent("Morbi viverra facilisis aliquet. ");
         $article->setCategory($categorie);
         $article->setTags(["Lorem", "Ipsum"]);
@@ -76,7 +76,7 @@ class AppFixtures extends Fixture
 
         $article = new Article();
         $article->setTitle("Tim PATERSON");
-        $article->addAuteurAuteur($auteur23);
+        $article->setAuteur("TM & GP");
         //{{ article.content|nl2br }}
         $article->setContent("Tim PATERSON est un programmeur informatique de Microsoft connu pour avoir développé l’OS MS-DOS (Microsoft Disk Operating System) en 1983. 
         
@@ -99,7 +99,7 @@ class AppFixtures extends Fixture
 
         $article = new Article();
         $article->setTitle("Tim PATERSON Rally");
-        $article->addAuteurAuteur($auteur23);
+        $article->setAuteur("TM & GP");
         //{{ article.content|nl2br }}
         $article->setContent("
         (Ses victoires :

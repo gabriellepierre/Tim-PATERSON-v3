@@ -37,9 +37,6 @@ class Article
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $Etat;
 
-    #[ORM\OneToMany(mappedBy: 'article', targetEntity: Auteurs::class)]
-    private $AuteurAuteur;
-
     public function __construct()
     {
         $this->AuteurAuteur = new ArrayCollection();
@@ -134,33 +131,4 @@ class Article
         return $this;
     }
 
-    /**
-     * @return Collection|Auteurs[]
-     */
-    public function getAuteurAuteur(): Collection
-    {
-        return $this->AuteurAuteur;
-    }
-
-    public function addAuteurAuteur(Auteurs $auteurAuteur): self
-    {
-        if (!$this->AuteurAuteur->contains($auteurAuteur)) {
-            $this->AuteurAuteur[] = $auteurAuteur;
-            $auteurAuteur->setArticle($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAuteurAuteur(Auteurs $auteurAuteur): self
-    {
-        if ($this->AuteurAuteur->removeElement($auteurAuteur)) {
-            // set the owning side to null (unless already changed)
-            if ($auteurAuteur->getArticle() === $this) {
-                $auteurAuteur->setArticle(null);
-            }
-        }
-
-        return $this;
-    }
 }

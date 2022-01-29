@@ -22,7 +22,7 @@ class ArticleType extends AbstractType
                 'choice_label' => 'name',
             ])
             
-            ->add('AuteurAuteur', EntityType::class, [
+            ->add('Auteur', EntityType::class, [
                 'class' => Auteurs::class,
                 'choice_label' => 'name',
             ])
