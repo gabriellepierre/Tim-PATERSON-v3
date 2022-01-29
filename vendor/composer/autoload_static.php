@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitdfcf1b95b9aadead83bb9866c49aca6c
+class ComposerStaticInitbe2a267a827ecb5d815127a9f5af6f6e
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -446,6 +446,7 @@ class ComposerStaticInitdfcf1b95b9aadead83bb9866c49aca6c
         'App\\Controller\\ArticleController' => __DIR__ . '/../..' . '/src/Controller/ArticleController.php',
         'App\\Controller\\BlogController' => __DIR__ . '/../..' . '/src/Controller/BlogController.php',
         'App\\Controller\\CategoryController' => __DIR__ . '/../..' . '/src/Controller/CategoryController.php',
+        'App\\Controller\\SearchController' => __DIR__ . '/../..' . '/src/Controller/SearchController.php',
         'App\\Controller\\SecurityController' => __DIR__ . '/../..' . '/src/Controller/SecurityController.php',
         'App\\DataFixtures\\AppFixtures' => __DIR__ . '/../..' . '/src/DataFixtures/AppFixtures.php',
         'App\\Entity\\Article' => __DIR__ . '/../..' . '/src/Entity/Article.php',
@@ -4471,9 +4472,9 @@ class ComposerStaticInitdfcf1b95b9aadead83bb9866c49aca6c
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitdfcf1b95b9aadead83bb9866c49aca6c::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitdfcf1b95b9aadead83bb9866c49aca6c::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitdfcf1b95b9aadead83bb9866c49aca6c::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitbe2a267a827ecb5d815127a9f5af6f6e::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitbe2a267a827ecb5d815127a9f5af6f6e::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitbe2a267a827ecb5d815127a9f5af6f6e::$classMap;
 
         }, null, ClassLoader::class);
     }
