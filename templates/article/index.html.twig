@@ -9,14 +9,14 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
+                <th>Titre</th>
                 <th>Auteur</th>
-                <th>Category</th>
-                <th>Content</th>
+                <th>Categorie</th>
+                <th>Contenu</th>
                 <th>Tags</th>
                 <th>Date</th>
                 <th>Publié</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -42,13 +42,14 @@
                 <td>{{ article.Etat }}</td>
 
                 <td>
-                    <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+                    <a href="{{ path('article_show', {'id': article.id}) }}">Ouvrir</a>
+                    <a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
+                    <a href="{{ path('article_delete', {'id': article.id}) }}">Supprimer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucun article trouvé</td>
             </tr>
         {% endfor %}
         </tbody>

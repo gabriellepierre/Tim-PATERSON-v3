@@ -94,6 +94,7 @@ class AppFixtures extends Fixture
         $article->setTags(["TIM", "PATERSON", "MICROSOFT"]);
         $article->setDate(\DateTime::createFromFormat('d-m-Y', "27-01-2022"));
         $article->setEtat(true);
+        $manager->persist($article);
 
         $article = new Article();
         $article->setTitle("Tim PATERSON");
