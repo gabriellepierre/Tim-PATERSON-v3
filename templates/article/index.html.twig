@@ -28,13 +28,17 @@
                 <td>
                     {% if article.Category.name is defined %}
                         {{ article.Category.name }}
+                        {% else %}
+                            Pas de categorie.
                     {% endif %}
                 </td>
                 <td>{{ article.content|nl2br }}</td>
 
                 <td>
-                    {% for article in article %}
+                    {% for Tags in article %}
                         {{ article.Tags.value }}
+                        {% else %}
+                            Pas de Tags.
                     {% endfor %}
                 </td>
 
