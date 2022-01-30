@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Article;
+use App\Entity\User;
 use App\Entity\Auteurs;
 use App\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -123,6 +124,18 @@ class AppFixtures extends Fixture
         $article->setDate(\DateTime::createFromFormat('d-m-Y', "27-01-2022"));
         $article->setEtat(true);
         $manager->persist($article);
+
+
+        //users
+        $Tiff = new User();
+        $Tiff->setUsername("Tiff");
+        $Tiff->setPassword("mdpT");
+        $manager->persist($Tiff);
+
+        $Gabrielle = new User();
+        $Gabrielle->setUsername("Gabrielle");
+        $Gabrielle->setPassword("mdpG");
+        $manager->persist($Gabrielle);
 
         $manager->flush();
     }

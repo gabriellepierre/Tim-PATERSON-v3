@@ -7,6 +7,13 @@ security:
             algorithm: auto
         App\Entity\UserTim:
             algorithm: auto
+        App\Entity\Tiff:
+            algorithm: auto
+        App\Entity\Gabrielle:
+            algorithm: auto
+
+
+
 
 
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
@@ -14,8 +21,11 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\UserTim
+                class: App\Entity\User
                 property: username
+        # used to reload user from session & other features (e.g. switch_user)
+        # used to reload user from session & other features (e.g. switch_user)
+        # used to reload user from session & other features (e.g. switch_user)
         # used to reload user from session & other features (e.g. switch_user)
         # used to reload user from session & other features (e.g. switch_user)
     firewalls:
