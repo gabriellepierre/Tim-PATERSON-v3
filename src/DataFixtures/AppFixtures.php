@@ -126,6 +126,34 @@ class AppFixtures extends Fixture
         $manager->persist($article);
 
 
+        //articles non publies
+
+        $article = new Article();
+        $article->setTitle("Essaie");
+        $article->setAuteur("GP");
+        $article->setContent("Morbi viverra facilisis aliquet. ");
+        $contenu = $article->getContent(); 
+        $resum = substr($contenu, 0, 50);
+        $article->setResume($resum);
+        $article->setCategory($categorie);
+        $article->setTags(["Lorem", "Ipsum"]);
+        $article->setDate(\DateTime::createFromFormat('d-m-Y', "30-01-2022"));
+        $article->setEtat(false);
+        $manager->persist($article);
+
+        $article = new Article();
+        $article->setTitle("Test");
+        $article->setAuteur("TM");
+        $article->setContent("Morbi viverra facilisis aliquet. ");
+        $contenu = $article->getContent(); 
+        $resum = substr($contenu, 0, 50);
+        $article->setResume($resum);
+        $article->setCategory($categorie);
+        $article->setTags(["Lorem", "Ipsum"]);
+        $article->setDate(\DateTime::createFromFormat('d-m-Y', "30-01-2022"));
+        $article->setEtat(false);
+        $manager->persist($article);
+
         //users
         $Tiff = new User();
         $Tiff->setUsername("Tiff");
