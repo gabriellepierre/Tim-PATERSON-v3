@@ -37,6 +37,9 @@ class Article
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $Etat;
 
+    #[ORM\Column(type: 'text', nullable: true)]
+    private $Resume;
+
 
     public function getId(): ?int
     {
@@ -125,6 +128,18 @@ class Article
         $this->Etat = $Etat;
 
         return $this;
+    }
+
+    public function getResume(): ?string
+    {
+        return $this->Resume;
+    }
+
+    public function setResume(?string $Resume): self
+    {
+        $this->Resume = $Resume;
+
+        return $this;        
     }
 
 }

@@ -12,7 +12,7 @@
                 <th scope="col">Titre</th>
                 <th scope="col">Auteur</th>
                 <th scope="col">Categorie</th>
-                <th scope="col">Contenu</th>
+                <th scope="col">Résumé</th>
                 <th scope="col">Tags</th>
                 <th scope="col">Date</th>
                 <th scope="col">Publié</th>
@@ -32,7 +32,7 @@
                             Pas de categorie.
                     {% endif %}
                 </td>
-                <td>{{ article.content|nl2br }}</td>
+                <td>{{ article.resume|nl2br }}</td>
 
                 <td>
                     {% for Tags in article %}

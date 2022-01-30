@@ -22,12 +22,8 @@ class ArticleType extends AbstractType
                 'choice_label' => 'name',
             ])
             
-            ->add('Auteur', EntityType::class, [
-                'class' => Auteurs::class,
-                'choice_label' => 'name',
-            ])
-            ->add('date')
-            ->add('Tags', 'entity', array())    
+            ->add('Auteur')
+            ->add('date') 
             ->add('etat')
         ;
     }
