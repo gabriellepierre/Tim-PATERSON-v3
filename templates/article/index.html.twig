@@ -8,21 +8,21 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Auteur</th>
-                <th>Categorie</th>
-                <th>Contenu</th>
-                <th>Tags</th>
-                <th>Date</th>
-                <th>Publié</th>
-                <th>Actions</th>
+                <th scope="col">Id</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Auteur</th>
+                <th scope="col">Categorie</th>
+                <th scope="col">Contenu</th>
+                <th scope="col">Tags</th>
+                <th scope="col">Date</th>
+                <th scope="col">Publié</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for article in articles %}
             <tr>
-                <td>{{ article.id }}</td>
+                <td scope="row">{{ article.id }}</td>
                 <td>{{ article.title }}</td>
                 <td>{{ article.auteur }}</td>
                 <td>
@@ -46,9 +46,8 @@
                 <td>{{ article.Etat }}</td>
 
                 <td>
-                    <a href="{{ path('article_show', {'id': article.id}) }}">Ouvrir</a><br>
-                    <a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a><br>
-                    <a href="{{ path('article_delete', {'id': article.id}) }}">Supprimer</a>
+                    <a href="{{ path('article_show', {'id': article.id}) }}">Ouvrir</a><br/>
+                    <a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
