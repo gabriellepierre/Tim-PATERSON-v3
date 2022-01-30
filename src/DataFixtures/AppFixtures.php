@@ -58,6 +58,9 @@ class AppFixtures extends Fixture
         Vestibulum eget dictum lorem. 
         Vestibulum est justo, fermentum eu eleifend vestibulum, lacinia efficitur erat. 
         Proin a ligula lorem. In iaculis dignissim sodales.");
+        $contenu = $article->getContent(); 
+        $resum = substr($contenu, 0, 50);
+        $article->setResume($resum);
         $article->setCategory($categorie);        
         $article->setTags(["Lorem", "Ipsum"]);
         $article->setDate(\DateTime::createFromFormat('d-m-Y', "25-01-2022"));
@@ -68,6 +71,9 @@ class AppFixtures extends Fixture
         $article->setTitle("Article 2");
         $article->setAuteur("BSP");
         $article->setContent("Morbi viverra facilisis aliquet. ");
+        $contenu = $article->getContent(); 
+        $resum = substr($contenu, 0, 50);
+        $article->setResume($resum);
         $article->setCategory($categorie);
         $article->setTags(["Lorem", "Ipsum"]);
         $article->setDate(\DateTime::createFromFormat('d-m-Y', "26-01-2022"));
@@ -90,6 +96,9 @@ class AppFixtures extends Fixture
         
         Par la suite on le retrouvera dans quelques émissions de télévision, puis dans le rallye SCCA PRO Rally. Enfin, il fera parler de lui pour avoir créé un ordinateur de bord qu’il intégra dans une Porsche 911, 4 roues motrices.
         ");
+        $contenu = $article->getContent(); 
+        $resum = substr($contenu, 0, 50);
+        $article->setResume($resum);
         $article->setCategory($categorie2);
         $article->setTags(["TIM", "PATERSON", "MICROSOFT"]);
         $article->setDate(\DateTime::createFromFormat('d-m-Y', "27-01-2022"));
@@ -106,6 +115,9 @@ class AppFixtures extends Fixture
         Rotary Rally Rockets : 1984 Tim Paterson et Douglas Paterson avec une Mazda RX7,
         SCCA PRO Rally : 1989 Tim Paterson et Penny Thomas avec une Porsche 911).
         ");
+        $contenu = $article->getContent(); 
+        $resum = substr($contenu, 0, 50);
+        $article->setResume($resum);
         $article->setCategory($categorie2);
         $article->setTags(["TIM", "PATERSON", "RALLY"]);
         $article->setDate(\DateTime::createFromFormat('d-m-Y', "27-01-2022"));
