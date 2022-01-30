@@ -8,8 +8,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SearchController extends AbstractController
 {
-    #[Route('/search', name: 'search')]
-    public function index(): Response
+    #[Route('/search', name: 'search', methods: ['Post'])]
+    public function SearchRecherche(): Response
     {
         return $this->render('search/index.html.twig', [
             'controller_name' => 'SearchController',
@@ -35,21 +35,6 @@ class SearchController extends AbstractController
             ->getForm();
         return $this->render('search/searchBar.html.twig', [
             'form' => $form->createView()
-        ]);
-    }
-
-    /**
-    * @Route("/handleSearch", name="handleSearch")
-    * @param Request $request
-    */
-    public function handleSearch(Request $request, ArticleRepository $repo)
-    {
-        $query = $request->request->get('form')['query'];
-        if($query) {
-            $articles = $repo->findArticlesByName($query);
-        }
-        return $this->render('search/index.html.twig', [
-            'articles' => $articles
         ]);
     }
 }

@@ -37,10 +37,6 @@ class Article
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $Etat;
 
-    public function __construct()
-    {
-        $this->AuteurAuteur = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
