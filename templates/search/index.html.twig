@@ -1,43 +1,83 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bonjour SearchController!{% endblock %}
+{% block title %}Recherche{% endblock %}
 
 {% block body %}
     <style>
         .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
         .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
     </style>
+    {% include 'search/recherche.php' %}
+    
+    <div>
+        <div>
+        {% if app.request.method == 'POST' %}
+            <h1>Resultats</h1>
+            <div> 
+                {% if inputRecherche | length == 0 %}
+                    <h4>Aucun résulat pour votre recherche.</h4>
+                {% else %}
+                    <h3 class="mt-3">Vos résulats de recherche :</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Titre</th>
+                                <th scope="col">Auteur</th>
+                                <th scope="col">Categorie</th>
+                                <th scope="col">Contenu</th>
+                                <th scope="col">Tags</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Publié</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
 
-    <div class="example-wrapper jumbotron">
-        <h1>Bonjour {{ controller_name }}! ✅</h1>
+                        <tbody>
+                            {% for article in articles %}
+                                <tr>
+                                    <td scope="row">{{ article.id }}</td>
+                                    <td>{{ article.title }}</td>
+                                    <td>{{ article.auteur }}</td>
+                                    <td>
+                                        {% if article.Category.name is defined %}
+                                            {{ article.Category.name }}
+                                            {% else %}
+                                                Pas de categorie.
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ article.content|nl2br }}</td>
 
-        <hr class="my-4">
-        Ce message vient de :
-        <ul>
-            <li>Votre controller à <code><a href="{{ '/app/src/Controller/SearchController.php'|file_link(0) }}">src/Controller/SearchController.php</a></code></li>
-            <li>Votre template à <code><a href="{{ '/app/templates/search/index.html.twig'|file_link(0) }}">templates/search/index.html.twig</a></code></li>
-        </ul>
-    </div>
-{% endblock %}
+                                    <td>
+                                        {% for Tags in article %}
+                                            {{ article.Tags.value }}
+                                            {% else %}
+                                                Pas de Tags.
+                                        {% endfor %}
+                                    </td>
 
-{% block %}
-    {% if app.request.method == 'POST' %}
-        <div> 
-            {% if articles | length == 0 %}
-                <h4>Aucun résulat pour votre recherche.</h4>
-            {% else %}
-                <h3 class="mt-3">Vos résulats de recherche :</h3>
-                {% for article in articles %}
-                    <div class="mt-3 p-3 bg-light border rounded">
-                        <a href="{{ path('article_show', {'slug': article.slug}) }}">
-                                <h6 class="text-dark"><i class="bi bi-arrow-down-right-square-fill text-primary"></i> {{ article.title }}</h6>
-                                <div class="text-dark small p-1 rounded">
-                                        Posté le {{ article.createdAt|format_datetime('medium', 'short') }} par {{ article.author }}
-                                </div>
-                        </a>
-                    </div>
-                {% endfor %}
-            {% endif %}
+                                    <td>{{ article.Date|date("m/d/Y") }}</td>
+                                    <td>{{ article.Etat }}</td>
+
+                                    <td>
+                                        <a href="{{ path('article_show', {'id': article.id}) }}">Ouvrir</a><br/>
+                                        <a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="4">Aucun article trouvé</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            </div>
+        {% else %}
+            <h1>Pas de recherche en cours.</h1>
+        {% endif %}
+
+
         </div>
-    {% endif %}
+    </div>
 {% endblock %}
