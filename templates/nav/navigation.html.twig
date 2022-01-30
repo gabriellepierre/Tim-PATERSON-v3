@@ -1,3 +1,4 @@
+<style>.nav-item > a {color:#28a745;} .nav-item > a:hover {color:#31cc54;} </style>
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
 
@@ -9,34 +10,34 @@
 
 
     <!-- Début du menu de navigation -->
-    <ul class="nav navbar-nav">
+    
 
     	<!-- Accueil-->
-      <li class="nav-item active">
+      <div class="nav-item active">
       	<a class="nav-link" href="{{ path('Accueil_blog') }}">Accueil</span></a>
-      </li>
+      </div>
 
       <!-- Sous-menu "Articles" -->
-      <li class="nav-item dropdown">
+      <div class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Articles</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ path('article_index') }}">Liste des articles</a>
           <a class="dropdown-item" href="{{ path('article_new') }}">Créer un article</a>
         </div>
-      </li>
+      </div>
 
       <!-- Sous-menu "Catégories" -->
-      <li class="nav-item dropdown">
+      <div class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catégories</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ path('category_index') }}">Liste des catégories</a>
           <a class="dropdown-item" href="{{ path('category_new') }}">Créer une catégorie</a>
         </div>
-      </li>
+      </div>
 
       <!-- Lien vers l'espace admin -->
-      <li><a href="{{ path('admin') }}">Espace Admin</a></li>
-    </ul>
+      <div class="nav-item dropdown"><a href="{{ path('admin') }}">Espace Admin</a></div>
+    
 
 
     <!-- Côté droit de la navbar -->
@@ -48,10 +49,6 @@
       </li>
     </ul>
 
-    <!-- Barre de recherche -->
-    <form class="form-inline my-2 my-lg-0" action="{{ path('search') }}" methode="post" >
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
-    </form>
+    {% include 'search/SearchBar.html.twig' %}
   </div>
 </nav>

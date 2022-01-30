@@ -2,23 +2,29 @@
 
 namespace App\Controller;
 
+use App\Repository\ArticleRepository;
+use App\Form\SearchForm;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Routing\Annotation\Route;
 
 class SearchController extends AbstractController
 {
-    #[Route('/search', name: 'search', methods: ['Post'])]
-    public function SearchRecherche(): Response
+    
+    #[Route('/search', name: 'recherche' , methods: ['Post'])]
+    public function SearchRecherche()
     {
-        return $this->render('search/index.html.twig', [
-            'controller_name' => 'SearchController',
-        ]);
+        return $this->render('search/recherche.php');
     }
+    
+
     //https://www.citizenz.info/article/symfony-barre-de-recherche-dans-la-sidebar
-    public function searchBar()
+    
+    #[Route('/search', name: 'search')]     
+    public function rechercheController(Request $request, ArticleRepository $articleRepository)
     {
-        $form = $this->createFormBuilder()
+        /*$form = $this->createFormBuilder()
             ->setAction($this->generateUrl('handleSearch'))
             ->add('query', TextType::class, [
                 'label' => false,
@@ -35,6 +41,23 @@ class SearchController extends AbstractController
             ->getForm();
         return $this->render('search/searchBar.html.twig', [
             'form' => $form->createView()
+        ]);*/
+
+        $rechArticles = [];
+
+        $searchForm = $this->createForm(SearchForm::class);
+
+        if($searchForm->handleRequest($request)->isSubmitted() && $searchForm->isValid()) {
+            $critere = $searchForm->getData();
+            dd($critere);
+            $rechArticles = $articleRepository->rechercheArticle($critere);
+        }
+        //  
+        return $this->render('search/searchBar.html.twig', [
+            'search_form' => $searchForm->createView(),
+            'rechArticles' => $rechArticles,
         ]);
     }
+
+
 }

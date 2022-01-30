@@ -47,24 +47,19 @@ class ArticleRepository extends ServiceEntityRepository
         ;
     }
     */
-     // Find/search articles by title/content
-     public function findArticlesByName(string $query)
-     {
-         $qb = $this->createQueryBuilder('p');
-         $qb
-             ->where(
-                 $qb->expr()->andX(
-                     $qb->expr()->orX(
-                         $qb->expr()->like('p.title', ':query'),
-                         $qb->expr()->like('p.content', ':query'),
-                     ),
-                     $qb->expr()->isNotNull('p.created_at')
-                 )
-             )
-             ->setParameter('query', '%' . $query . '%')
-         ;
-         return $qb
-             ->getQuery()
-             ->getResult();
-     }
+    //SELECT * FROM article WHERE title LIKE "%'.$_POST["inputRecherche"].'%" 
+    public function rechercheArticle($critere) 
+    {
+        $resultat = $this->createQueryBuilder('a');
+        $resultat->Where(
+                $resultat->expr()->like('a.title', ':val')
+            )
+            ->setParameter('val',('%' . $critere . '%') )
+            ->orderBy('a.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+        return $resultat;
+    }
 }
