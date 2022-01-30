@@ -1,3 +1,10 @@
+{% block php %}
+
+    $resultat = $_POST['inputRecherche'];    
+    rechercheArticle($resultat);
+
+{% endblock %}
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Recherche{% endblock %}
@@ -7,11 +14,11 @@
         .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
         .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
     </style>
-    {% include 'search/recherche.php' %}
+
     
     <div>
         <div>
-        {% if app.request.method == 'POST' %}
+        {# if app.request.method == 'POST' #}
             <h1>Resultats</h1>
             <div> 
                 {% if inputRecherche | length == 0 %}
@@ -71,7 +78,7 @@
                             {% endfor %}
                         </tbody>
                     </table>
-                {% endif %}
+                {# endif #}
             </div>
         {% else %}
             <h1>Pas de recherche en cours.</h1>

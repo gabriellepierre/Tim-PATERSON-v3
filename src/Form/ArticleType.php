@@ -23,7 +23,6 @@ class ArticleType extends AbstractType
             ])
             
             ->add('Auteur')
-            ->add('date') 
             ->add('etat')
         ;
     }

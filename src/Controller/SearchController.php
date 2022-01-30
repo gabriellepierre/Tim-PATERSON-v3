@@ -12,19 +12,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends AbstractController
 {
     
-    #[Route('/search', name: 'recherche' , methods: ['Post'])]
+    /*#[Route('/search', name: 'recherche' , methods: ['Post'])]
     public function SearchRecherche()
     {
         return $this->render('search/recherche.php');
-    }
+    }*/
     
 
     //https://www.citizenz.info/article/symfony-barre-de-recherche-dans-la-sidebar
     
-    #[Route('/search', name: 'search', methods: ['Post'])] 
+    #[Route('/search', name: 'search')] 
     public function goToResultat()
     {
-        return $this->render('search/index.html.twig');
+        return $this->render('search/recherche.php');
     }
 
     public function rechercheController(Request $request, ArticleRepository $articleRepository)
@@ -54,7 +54,7 @@ class SearchController extends AbstractController
 
         if($searchForm->handleRequest($request)->isSubmitted() && $searchForm->isValid()) {
             $critere = $searchForm->getData();
-            dd($critere);
+            //dd($critere);
             $rechArticles = $articleRepository->rechercheArticle($critere);
         }
         //  
