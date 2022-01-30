@@ -21,6 +21,7 @@
         </thead>
         <tbody>
         {% for article in articles %}
+            {% if article.etat == 1%}
             <tr>
                 <td scope="row">{{ article.id }}</td>
                 <td>{{ article.title }}</td>
@@ -50,6 +51,7 @@
                     <a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
                 </td>
             </tr>
+            {% endif %}
         {% else %}
             <tr>
                 <td colspan="4">Aucun article trouvé</td>

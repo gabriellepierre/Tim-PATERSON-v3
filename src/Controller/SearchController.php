@@ -21,7 +21,12 @@ class SearchController extends AbstractController
 
     //https://www.citizenz.info/article/symfony-barre-de-recherche-dans-la-sidebar
     
-    #[Route('/search', name: 'search')]     
+    #[Route('/search', name: 'search', methods: ['Post'])] 
+    public function goToResultat()
+    {
+        return $this->render('search/index.html.twig');
+    }
+
     public function rechercheController(Request $request, ArticleRepository $articleRepository)
     {
         /*$form = $this->createFormBuilder()
