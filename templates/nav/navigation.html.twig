@@ -35,16 +35,13 @@
         </div>
       </div>
 
+      <!-- Lien vers l'espace admin -->
+      <div class="nav-item dropdown"><a href="{{ path('admin') }}">Espace Admin</a></div>
+    
+
 
     <!-- Côté droit de la navbar -->
-    <div class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mon compte</a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{{ path('app_login') }}">Se connecter</a>
-          <a class="dropdown-item" href="{{ path('app_login') }}">S'inscrire</a>
-          <a class="dropdown-item" href="{{ path('app_login') }}">Modifier mon compte</a>
-        </div>
-      </div>
+
     <ul class="nav navbar-nav navbar-right">
     	<!-- Bouton pour se connecter (et également s'inscrire) -->
       <li>
